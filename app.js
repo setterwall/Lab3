@@ -1,22 +1,22 @@
 function sendMsg() {
 	var msg = document.getElementById('textInput').value;
-	chatChannel.publish({channel: 'demo_tutorial', message : msg});
+	chatChannel.publish({channel: 'Sandbox', message : msg});
 	document.getElementById('textInput').value = '';
         }
 
 function logOut() {
-	chatChannel.unsubscribe({channel : 'demo_tutorial'});
+	chatChannel.unsubscribe({channel : 'Sandbox'});
 	showView('homeView');
         }
 
 function loadChat(user){
 	if(user == 'read') {
 		window.chatChannel = PUBNUB.init({
-		subscribe_key: 'demo'
+		subscribe_key: 'sub-c-ee7c4d30-e9ba-11e4-a30c-0619f8945a4f'
 	});
 
 		chatChannel.subscribe({
-		channel: 'demo_tutorial',
+		channel: 'Sandbox',
 		message: function(m){document.getElementById('chatWindow').value = m + '\n' + document.getElementById('chatWindow').value},
 		connect: function(){console.log("Connected")},
 		disconnect: function(){console.log("Disconnected")},
@@ -27,12 +27,11 @@ function loadChat(user){
 
 	else if (user == 'readwrite') {
 		window.chatChannel = PUBNUB.init({
-		publish_key: 'demo',
-		subscribe_key: 'demo'
+		publish_key: 'pub-c-c9b9bd43-e594-4146-b78a-716088b91de8',
+		subscribe_key: 'sub-c-ee7c4d30-e9ba-11e4-a30c-0619f8945a4f'
 		});
-
 		chatChannel.subscribe({
-        channel: 'demo_tutorial',
+        channel: 'Sandbox',
         message: function(m){document.getElementById('chatWindow').value = m + '\n' + document.getElementById('chatWindow').value},
         connect: function(){console.log("Connected")},
         disconnect: function(){console.log("Disconnected")},
