@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+  <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+  <script src="app.js"></script>
+  <title>ChatApp</title>
+</head>
+<body>
+  <div class="views" id="homeView" style="display:block">
+    <button onclick="loadChat('readwrite')">Read/Write</button>
+    <button onclick="loadChat('read')">Read</button>
+  </div>
+
+  <div class="views" id="chatView" style="display:none">
+    <div>
+      <input id="textInput" placeholder="Your text goes here"></input>
+      <button onclick="sendMsg()">Send</button>
+    </div>
+    <textarea id="chatWindow" rows="30" cols="70" readonly></textarea>
+    </br>
+    <button onclick="logOut()">Log Out</button>    
+  </div>
+
+</body>
+</html>
