@@ -20,7 +20,7 @@ function logOut() {
 	document.getElementById('messageText').value = '';
 }
 
-function loadChat(user){
+function loadChat(){
 	/**if(user == 'read') {
 		window.chatChannel = PUBNUB.init({
 		subscribe_key: 'sub-c-ee7c4d30-e9ba-11e4-a30c-0619f8945a4f'
@@ -28,7 +28,6 @@ function loadChat(user){
 
 	alias = document.getElementById('userName').value;
 
-	if (user == 'readwrite') {
 		if(alias == ""){
 		  var message = document.getElementById('messageText');
 			message.innerHTML = "Enter an alias!";
@@ -56,7 +55,6 @@ function loadChat(user){
 		newUser();
 		}
 
-	}
 }
 
 function getLocation() {
