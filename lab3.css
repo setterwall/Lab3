@@ -1,0 +1,40 @@
+@media screen and (min-width: 361px) {
+
+#chatWindow {
+width: 700px;
+height: 500px;
+}
+#chatHeader {
+color: blue;
+}
+#inputArea {
+
+}}
+
+
+
+@media screen and (device-width: 320px) {
+#chatWindow {
+width: 320px;
+height: 335px;
+}
+#chatHeader {
+color: red;
+
+}
+#inputArea {
+
+}}
+
+
+@media screen and (device-width: 360px) {
+#chatWindow {
+width: 360px;
+height: 450px;
+}
+#chatHeader {
+color: green;
+}
+#inputArea {
+
+}}

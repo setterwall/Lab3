@@ -2,26 +2,31 @@
 <html>
 <meta charset="UTF-8">
 <head>
+  <meta name="viewport" content="width=device-width" />
   <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
   <script src="app.js"></script>
   <title>ChatApp</title>
-  <link rel="icon" href="pics/chat.svg"/>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="lab3.css">
+  <link rel="icon" href="pics/chat.svg"/>
 </head>
+
 <body>
   <div class="views" id="homeView" style="display:block">
+
+    Alias: <input id="userName"></input>
     <button onclick="loadChat('readwrite')">Read/Write</button>
-    <button onclick="loadChat('read')">Read</button>
   </div>
 
   <div class="views" id="chatView" style="display:none">
-    <div>
+    <div id="chatHeader"><h1><small>chat</small><bold>APP</bold></h1></div>
+    <div id="inputArea">
       <input id="textInput" placeholder="Your text goes here"></input>
-      <button onclick="sendMsg()">Send</button>
+      <button class ="btn btn-primary" onclick="sendMsg()">Send</button>
     </div>
-    <textarea id="chatWindow" rows="30" cols="70" readonly></textarea>
-    </br>
-    <button onclick="logOut()">Log Out</button>    
+    <textarea class=".form-control" id="chatWindow" style="resize:none" readonly></textarea>
+  </br>
+    <button class ="btn btn-danger" onclick="logOut()">Log Out</button>    
   </div>
 
 </body>
