@@ -7,6 +7,7 @@ function sendMsg() {
 function logOut() {
 	chatChannel.unsubscribe({channel : 'Sandbox'});
 	showView('homeView');
+	document.getElementById('chatWindow').value = '';
         }
 
 function loadChat(user){
