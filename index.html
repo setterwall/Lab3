@@ -4,8 +4,9 @@
 <head>
   <meta name="viewport" content="width=device-width" />
   <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
   <script src="app.js"></script>
-  <title>ChatApp</title>
+  <title>chatApp</title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="lab3.css">
   <link rel="icon" href="pics/chat.svg"/>
@@ -15,7 +16,8 @@
   <div class="views" id="homeView" style="display:block">
 
     Alias: <input id="userName"></input>
-    <button onclick="loadChat('readwrite')">Read/Write</button>
+    <div id = "messageText"></div>
+    <button onclick="loadChat()">Login</button>
   </div>
 
   <div class="views" id="chatView" style="display:none">
@@ -24,7 +26,7 @@
       <input id="textInput" placeholder="Your text goes here"></input>
       <button class ="btn btn-primary" onclick="sendMsg()">Send</button>
     </div>
-    <textarea class=".form-control" id="chatWindow" style="resize:none" readonly></textarea>
+    <textarea id="chatWindow" style="resize:none" contenteditable="true" readonly></textarea>
   </br>
     <button class ="btn btn-danger" onclick="logOut()">Log Out</button>    
   </div>
