@@ -1,8 +1,9 @@
 var alias;
 var geocoder;
+var numberOfPeople;
 
 function sendMsg() {
-	var msg = alias+ " -->  " +document.getElementById('textInput').value;
+	var msg = document.getElementById('textInput').value;
 	chatChannel.publish({channel: 'Sandbox', message : msg});
 	document.getElementById('textInput').value = '';
 }
@@ -18,6 +19,21 @@ function logOut() {
 	document.getElementById('chatWindow').value = '';
 	document.getElementById('userName').value = '';
 	document.getElementById('messageText').value = '';
+}
+
+
+function countNumberOfPeople(){
+   PUBNUB.here_now({
+        channel : 'my_channel',
+        callback : function(m){        
+         numberOfPeople = m.occupancy;
+         console.log(m.occupancy);
+         var number = document.getElementById('numberOfPeople');
+         number.innerHTML =  "<b>In chatroom: </b>"+numberOfPeople+ " people";
+        }
+   });
+
+
 }
 
 function loadChat(){
@@ -36,15 +52,19 @@ function loadChat(){
 		else{
 			document.getElementById('chatWindow').value = '';
 			var randomID = PUBNUB.uuid();
+			
+
 			window.chatChannel = PUBNUB.init({
 			publish_key: 'pub-c-c9b9bd43-e594-4146-b78a-716088b91de8',
 			subscribe_key: 'sub-c-ee7c4d30-e9ba-11e4-a30c-0619f8945a4f',
 			uuid: randomID
 			});
 
+			alias.fontcolor(getRandomColor())
+
 			chatChannel.subscribe({
 		      channel: 'Sandbox',
-		      message: function(m){document.getElementById('chatWindow').value = m + '\n' + document.getElementById('chatWindow').value},
+		      message: function(m){document.getElementById('chatWindow').value = alias + ': ' + m + '\n' + document.getElementById('chatWindow').value},
 		      connect: function(){console.log("Connected")},
 		      disconnect: function(){console.log("Disconnected")},
 		      reconnect: function(){console.log("Reconnected")},
@@ -53,6 +73,7 @@ function loadChat(){
 
 		showView('chatView');   
 		newUser();
+      countNumberOfPeople();
 		}
 
 }
@@ -91,6 +112,15 @@ function outputLocation(tmp){
 			chatChannel.publish({channel: 'Sandbox', message : msg});
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 //Toggle between the different views
 function showView(goto) {
 	var views = document.getElementsByClassName('views');
@@ -100,4 +130,3 @@ function showView(goto) {
     var next = document.getElementById(goto);
     next.style.display = 'block';
 }
-
