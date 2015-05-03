@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html manifest="/~robinset/Mobile/Lab3/cache.appcache">
 <meta charset="UTF-8">
 <head>
+  <meta name="mobile-web-app-capable" content = "yes"/>
   <meta name="viewport" content="width=device-width" />
   <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
@@ -9,14 +10,16 @@
   <title>chatApp</title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="lab3.css">
-  <link rel="icon" href="pics/chat.svg"/>
+  <link rel="icon" href="pics/chat.png"/>
 </head>
 
 <body>
   <div class="views" id="homeView" style="display:block">
-
-    Alias: <input id="userName"></input>
+   <div id="chatHeader"><h1><small>chat</small><bold>APP</bold></h1></div>
+    <small><b>Enter an alias</b></small><br>
+    <input id="userName"></input>
     <div id = "messageText"></div>
+    <br>
     <button onclick="loadChat()">Login</button>
   </div>
 
@@ -25,6 +28,8 @@
     <div id="inputArea">
       <input id="textInput" placeholder="Your text goes here"></input>
       <button class ="btn btn-primary" onclick="sendMsg()">Send</button>
+      <br>
+      <div id = "numberOfPeople"></div>
     </div>
     <textarea id="chatWindow" style="resize:none" contenteditable="true" readonly></textarea>
   </br>

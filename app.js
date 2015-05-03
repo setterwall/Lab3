@@ -1,5 +1,6 @@
 var alias;
 var geocoder;
+var numberOfPeople;
 
 function sendMsg() {
 	var msg = document.getElementById('textInput').value;
@@ -18,6 +19,21 @@ function logOut() {
 	document.getElementById('chatWindow').value = '';
 	document.getElementById('userName').value = '';
 	document.getElementById('messageText').value = '';
+}
+
+
+function countNumberOfPeople(){
+   PUBNUB.here_now({
+        channel : 'my_channel',
+        callback : function(m){        
+         numberOfPeople = m.occupancy;
+         console.log(m.occupancy);
+         var number = document.getElementById('numberOfPeople');
+         number.innerHTML =  "<b>In chatroom: </b>"+numberOfPeople+ " people";
+        }
+   });
+
+
 }
 
 function loadChat(){
@@ -57,6 +73,7 @@ function loadChat(){
 
 		showView('chatView');   
 		newUser();
+      countNumberOfPeople();
 		}
 
 }
@@ -113,4 +130,3 @@ function showView(goto) {
     var next = document.getElementById(goto);
     next.style.display = 'block';
 }
-
